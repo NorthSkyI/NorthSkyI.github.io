@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>生日祝福</title>
+    <style>
+        /* 整体布局 */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffb6c1, #87cefa);
+            overflow: hidden;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 蛋糕容器 */
+        .cake-container {
+            position: relative;
+            margin-top: 100px;
+        }
+
+        /* 蛋糕主体 */
+        .cake {
+            width: 400px;
+            height: 200px;
+            background: #fff5ee;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* 奶油层 */
+        .cream {
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            height: 20px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        /* 蜡烛动画 */
+        .candle {
+            width: 30px;
+            height: 120px;
+            background: #ffd700;
+            position: absolute;
+            top: -130px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flame 1s infinite alternate;
+        }
+
+        @keyframes flame {
+            0% { 
+                box-shadow: 0 0 10px #ff4500;
+                background: #ffa500;
+            }
+            100% {
+                box-shadow: 0 0 20px #ffd700;
+                background: #ffff00;
+            }
+        }
+.title-box {
+    position: absolute;
+    top: 15%;
+    text-align: center;
+    width: 100%;
+align-items: center;
+}
+.birthday-text {
+    position: relative;
+    font-size: 5em;
+    color: #ff69b4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: bounce 2s infinite;
+    margin: 0; /* 清除默认边距 */
+}
+
+.name-text {
+    margin-top: 30px;
+    font-size: 5em;
+    animation: bounce 2s infinite 0.5s; /* 动画延迟0.5秒 */
+    filter: hue-rotate(-15deg); /* 颜色微调 */
+}
+    </style>
+</head>
+<body>
+    <div class="title-box">
+    <h1 class="birthday-text">🎉Happy Birthday! 🎉</h1>
+    <h2 class="birthday-text name-text">To: 最可爱的妹妹郭雨欣</h2>
+    </div>
+    <div class="cake-container">
+        <div class="cake">
+            <div class="cream"></div>
+            <div class="candle"></div>
+        </div>
+    </div>
+
+    <!-- 自动播放生日音乐 -->
+    <audio id="birthdayMusic" autoplay loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/22/audio_5f0e3d8c5a.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        
+        // 点击页面撒爱心
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.style.cssText = `
+                position: absolute;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                font-size: 100px;
+                animation: heartFloat 1s forwards;
+            `;
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 1000);
+        });
+       let lastTouchEnd = 0;
+    document.addEventListener('touchend', (e) => {
+      if (Date.now() - lastTouchEnd <= 300) e.preventDefault();
+      lastTouchEnd = Date.now();
+    }, { passive: false });
+
+    // 禁用双指
+    document.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+        // 初始化动画
+        //window.onload = function() {
+        //    createBalloons();
+        //    document.getElementById('birthdayMusic').play().catch(() => {
+        //        alert('点击页面任意处开始播放音乐🎵');
+        //    });
+       // }
+    </script>
+</body>
+</html>
