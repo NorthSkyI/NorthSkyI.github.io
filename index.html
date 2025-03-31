@@ -107,11 +107,10 @@ align-items: center;
 
     <!-- 自动播放生日音乐 -->
     <audio id="birthdayMusic" autoplay loop>
-        <source src="https://cdn.pixabay.com/audio/2022/03/22/audio_5f0e3d8c5a.mp3" type="audio/mpeg">
+        <source src="happyBirthday.mp3" type="audio/mpeg">
     </audio>
-
     <script>
-        
+        let flag = 0;
         // 点击页面撒爱心
         document.addEventListener('click', function(e) {
             const heart = document.createElement('div');
@@ -124,7 +123,7 @@ align-items: center;
             `;
             heart.innerHTML = '❤️';
             document.body.appendChild(heart);
-            
+            if(flag === 0) document.querySelector('audio').play();
             setTimeout(() => heart.remove(), 1000);
         });
        let lastTouchEnd = 0;
@@ -137,13 +136,6 @@ align-items: center;
     document.addEventListener('touchstart', (e) => {
       if (e.touches.length > 1) e.preventDefault();
     }, { passive: false });
-        // 初始化动画
-        //window.onload = function() {
-        //    createBalloons();
-        //    document.getElementById('birthdayMusic').play().catch(() => {
-        //        alert('点击页面任意处开始播放音乐🎵');
-        //    });
-       // }
     </script>
 </body>
 </html>
