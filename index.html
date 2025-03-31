@@ -2,42 +2,39 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>生日祝福</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐</title>
     <style>
-        /* 整体布局 */
         body {
             margin: 0;
+            padding: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #ffb6c1, #87cefa);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             overflow: hidden;
             font-family: 'Comic Sans MS', cursive;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .title {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
         }
 
-        /* 蛋糕容器 */
-        .cake-container {
-            position: relative;
-            margin-top: 100px;
-        }
-
-        /* 蛋糕主体 */
         .cake {
-            width: 400px;
-            height: 200px;
+            width: 150px;
+            height: 100px;
             background: #fff5ee;
             border-radius: 20px;
             position: relative;
+            margin-top: 50px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* 奶油层 */
         .cream {
             position: absolute;
             top: -10px;
@@ -47,16 +44,31 @@
             border-radius: 10px;
         }
 
-        /* 蜡烛动画 */
         .candle {
-            width: 30px;
-            height: 120px;
+            width: 10px;
+            height: 50px;
             background: #ffd700;
             position: absolute;
-            top: -130px;
+            top: -60px;
             left: 50%;
             transform: translateX(-50%);
             animation: flame 1s infinite alternate;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background: #ff69b4;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 100%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
 
         @keyframes flame {
@@ -69,47 +81,40 @@
                 background: #ffff00;
             }
         }
-.title-box {
-    position: absolute;
-    top: 15%;
-    text-align: center;
-    width: 100%;
-align-items: center;
-}
-.birthday-text {
-    position: relative;
-    font-size: 5em;
-    color: #ff69b4;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    animation: bounce 2s infinite;
-    margin: 0; /* 清除默认边距 */
-}
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
 
-.name-text {
-    margin-top: 30px;
-    font-size: 5em;
-    animation: bounce 2s infinite 0.5s; /* 动画延迟0.5秒 */
-    filter: hue-rotate(-15deg); /* 颜色微调 */
-}
+        /* 添加祝福文字样式 */
+        .name {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
+            animation-delay: 0.5s;
+        }
     </style>
 </head>
 <body>
-    <div class="title-box">
-    <h1 class="birthday-text">🎉Happy Birthday! 🎉</h1>
-    <h2 class="birthday-text name-text">To: 最可爱的妹妹郭雨欣</h2>
+    <div class="title">🎉Happy Birthday!🎉</div>
+    <!-- 添加祝福文字 -->
+    <div class="name">To: 最可爱的妹妹郭雨欣</div>
+    <div class="cake">
+        <div class="cream"></div>
+        <div class="candle"></div>
     </div>
-    <div class="cake-container">
-        <div class="cake">
-            <div class="cream"></div>
-            <div class="candle"></div>
-        </div>
-    </div>
+    <div class="balloon" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="balloon" style="left: 50%; animation-delay: 1s; background: #87cefa;"></div>
+    <div class="balloon" style="left: 80%; animation-delay: 2s; background: #98fb98;"></div>
 
-    <!-- 自动播放生日音乐 -->
-    <audio id="birthdayMusic" autoplay loop>
+    <audio id="music" loop>
         <source src="happyBirthday.mp3" type="audio/mpeg">
     </audio>
+
     <script>
+        let audio = document.getElementById('music');
         let flag = 0;
         // 点击页面撒爱心
         document.addEventListener('click', function(e) {
@@ -118,24 +123,18 @@ align-items: center;
                 position: absolute;
                 left: ${e.clientX}px;
                 top: ${e.clientY}px;
-                font-size: 100px;
-                animation: heartFloat 1s forwards;
+                font-size: 40px;
+                animation: float 1s ease-out forwards;
+                color: #ff69b4;
             `;
             heart.innerHTML = '❤️';
             document.body.appendChild(heart);
-            if(flag === 0) document.querySelector('audio').play();
+            if(flag == 0) {
+                audio.play();
+                flag = 1;
+            }
             setTimeout(() => heart.remove(), 1000);
         });
-       let lastTouchEnd = 0;
-    document.addEventListener('touchend', (e) => {
-      if (Date.now() - lastTouchEnd <= 300) e.preventDefault();
-      lastTouchEnd = Date.now();
-    }, { passive: false });
-
-    // 禁用双指
-    document.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 1) e.preventDefault();
-    }, { passive: false });
     </script>
 </body>
 </html>
