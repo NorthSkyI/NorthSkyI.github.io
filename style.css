@@ -655,3 +655,71 @@ button:hover {
         font-size: 1em;
     }
 }
+
+@media (max-width: 385px) {
+    .vintage-room {
+        padding: 5px;
+        margin: 5px auto;
+    }
+    
+    .room-background {
+        padding: 10px;
+    }
+    
+    .avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .nickname {
+        font-size: 1.2em;
+    }
+    
+    .photo-frame h1 {
+        font-size: 1.5em;
+    }
+    
+    .stat-card {
+        max-width: 140px;
+        padding: 8px;
+        margin: 5px;
+    }
+    
+    .number {
+        font-size: 1.8em;
+    }
+    
+    .detailed-time {
+        font-size: 1em;
+    }
+    
+    .memory-board h2,
+    .settings-panel h2 {
+        font-size: 1.2em;
+    }
+    
+    .event-name {
+        font-size: 0.9em;
+    }
+    
+    .event-date {
+        font-size: 0.9em;
+    }
+    
+    .countdown {
+        font-size: 0.9em;
+    }
+    
+    button {
+        padding: 10px 16px;
+        font-size: 1em;
+    }
+    
+    .couple-profile-frame {
+        margin: 8px auto;
+    }
+    
+    .memory-board {
+        margin: 8px 0;
+    }
+}
