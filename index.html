@@ -1,140 +1,94 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>生日快乐</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            overflow: hidden;
-            font-family: 'Comic Sans MS', cursive;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: bounce 2s infinite;
-        }
-
-        .cake {
-            width: 150px;
-            height: 100px;
-            background: #fff5ee;
-            border-radius: 20px;
-            position: relative;
-            margin-top: 50px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .cream {
-            position: absolute;
-            top: -10px;
-            width: 100%;
-            height: 20px;
-            background: #fff;
-            border-radius: 10px;
-        }
-
-        .candle {
-            width: 10px;
-            height: 50px;
-            background: #ffd700;
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: flame 1s infinite alternate;
-        }
-
-        .balloon {
-            width: 50px;
-            height: 70px;
-            background: #ff69b4;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 100%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-
-        @keyframes flame {
-            0% { 
-                box-shadow: 0 0 10px #ff4500;
-                background: #ffa500;
-            }
-            100% {
-                box-shadow: 0 0 20px #ffd700;
-                background: #ffff00;
-            }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* 添加祝福文字样式 */
-        .name {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-top: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: bounce 2s infinite;
-            animation-delay: 0.5s;
-        }
-    </style>
+    <title>恋爱日记 - 我们的爱情故事</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="title">🎉Happy Birthday!🎉</div>
-    <!-- 添加祝福文字 -->
-    <div class="name">To: 最可爱的妹妹郭雨欣</div>
-    <div class="cake">
-        <div class="cream"></div>
-        <div class="candle"></div>
+    <div class="vintage-room">
+        <div class="room-background">
+            <div class="wooden-floor"></div>
+            <div class="vintage-wall">
+                <div class="couple-profile-frame">
+                    <div class="couple-profile">
+                        <div class="avatar-layout">
+                            <div class="avatar-item">
+                                <img src="images/avatar-1.jpg" alt="头像1" class="avatar avatar-1">
+                                <span class="nickname">丹阳</span>
+                            </div>
+                            <div class="heart-animation">❤️</div>
+                            <div class="avatar-item">
+                                <img src="images/avatar-2.jpg" alt="头像2" class="avatar avatar-2">
+                                <span class="nickname">永琪</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-frame">
+                    <div class="photo-content">
+                        <h1>❤️ 我们的爱情 ❤️</h1>
+                        <div class="detailed-time">
+                            <p>这是我们一起走过的<br><span id="detailed-days">0</span> 天 <span id="detailed-hours">0</span> 小时 <span id="detailed-minutes">0</span> 分钟 <span id="detailed-seconds">0</span> 秒</p>
+                            <span id="detailed-countdown" style="display: none;">2026-02-16</span>
+                        </div>
+                        <div class="love-stats">
+                            <div class="stat-card">
+                                <h3>恋爱天数</h3>
+                                <div id="love-days" class="number">0</div>
+                                <span>天</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>恋爱小时</h3>
+                                <div id="love-hours" class="number">0</div>
+                                <span>小时</span>
+                            </div>
+                            <div class="stat-card">
+                                <h3>恋爱分钟</h3>
+                                <div id="love-minutes" class="number">0</div>
+                                <span>分钟</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="memory-board">
+                    <h2>📅 纪念日</h2>
+                    <div class="anniversaries">
+                        <div class="anniversary-item">
+                            <span class="event-name">相遇纪念日</span>
+                            <span class="event-date" id="meet-day">2026-02-16</span>
+                            <span class="countdown" id="meet-countdown"></span>
+                        </div>
+                        <div class="anniversary-item">
+                            <span class="event-name">恋爱纪念日</span>
+                            <span class="event-date" id="love-day">2026-02-21</span>
+                            <span class="countdown" id="love-countdown"></span>
+                        </div>
+                        <div class="anniversary-item">
+                            <span class="event-name">下一个情人节</span>
+                            <span class="event-date" id="valentine-day">2027-02-14</span>
+                            <span class="countdown" id="valentine-countdown"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
-    <div class="balloon" style="left: 20%; animation-delay: 0s;"></div>
-    <div class="balloon" style="left: 50%; animation-delay: 1s; background: #87cefa;"></div>
-    <div class="balloon" style="left: 80%; animation-delay: 2s; background: #98fb98;"></div>
 
-    <audio id="music" loop>
-        <source src="happyBirthday.mp3" type="audio/mpeg">
-    </audio>
+    <div class="floating-hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+    </div>
 
-    <script>
-        let audio = document.getElementById('music');
-        let flag = 0;
-        // 点击页面撒爱心
-        document.addEventListener('click', function(e) {
-            const heart = document.createElement('div');
-            heart.style.cssText = `
-                position: absolute;
-                left: ${e.clientX}px;
-                top: ${e.clientY}px;
-                font-size: 40px;
-                animation: float 1s ease-out forwards;
-                color: #ff69b4;
-            `;
-            heart.innerHTML = '❤️';
-            document.body.appendChild(heart);
-            if(flag == 0) {
-                audio.play();
-                flag = 1;
-            }
-            setTimeout(() => heart.remove(), 1000);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
