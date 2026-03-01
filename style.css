@@ -361,6 +361,77 @@ button:hover {
     50% { transform: translateY(-20px) rotate(10deg); }
 }
 
+/* 音乐控制面板样式 */
+.music-control-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-toggle {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #e91e63 0%, #d81b60 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(232, 30, 99, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-panel {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: linear-gradient(135deg, #f9f3f3 0%, #f5e1e1 100%);
+    border: 3px solid #e8c4c4;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+}
+
+.music-panel.show {
+    display: block;
+}
+
+.now-playing {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #d81b60;
+    font-weight: bold;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.music-controls button {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    border-radius: 50%;
+    margin-top: 0;
+}
+
 @media (max-width: 768px) {
     .vintage-room {
         padding: 10px;

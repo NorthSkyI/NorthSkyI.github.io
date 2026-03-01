@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 每分钟更新一次纪念日倒计时
     setInterval(updateAnniversaries, 60000);
+    
+    // 初始化音乐播放器
+    initializeMusicPlayer();
 });
 
 // 加载保存的设置
@@ -37,6 +40,114 @@ function loadSettings() {
     // 计算下一个情人节
     const nextValentine = getNextValentine();
     document.getElementById('valentine-day').textContent = formatDate(nextValentine);
+}
+
+// 音乐播放器功能
+let musicList = [];
+let currentSongIndex = 0;
+let isMusicPlaying = false;
+
+// 初始化音乐播放器
+function initializeMusicPlayer() {
+    loadMusicList();
+    if (musicList.length > 0) {
+        // 尝试自动播放，处理浏览器限制
+        const audio = document.getElementById('background-music');
+        
+        // 设置自动播放属性
+        audio.autoplay = true;
+        
+        playRandomSong().catch(error => {
+            console.log('自动播放被阻止:', error);
+            // 显示提示信息，让用户手动点击播放
+            showPlayPrompt();
+        });
+    }
+}
+
+// 加载音乐列表
+function loadMusicList() {
+    // 这里可以扩展为从服务器获取音乐列表
+    musicList = ['A Thousand Years-Christina Perri.mp3'];
+    
+    // 添加更多示例音乐（实际使用时可以替换为真实音乐文件）
+    // musicList.push('Another Love Song.mp3');
+    // musicList.push('Perfect - Ed Sheeran.mp3');
+    // musicList.push('Can\'t Help Falling In Love.mp3');
+}
+
+// 播放随机歌曲
+function playRandomSong() {
+    return new Promise((resolve, reject) => {
+        if (musicList.length === 0) return resolve();
+        
+        currentSongIndex = Math.floor(Math.random() * musicList.length);
+        const audio = document.getElementById('background-music');
+        audio.src = 'music/' + musicList[currentSongIndex];
+        
+        // 更新当前播放显示
+        document.getElementById('current-song').textContent = 
+            musicList[currentSongIndex].replace('.mp3', '');
+        
+        // 自动播放
+        audio.play().then(() => {
+            isMusicPlaying = true;
+            updatePlayButton();
+            resolve();
+        }).catch(error => {
+            isMusicPlaying = false;
+            updatePlayButton();
+            reject(error);
+        });
+    });
+}
+
+// 播放/暂停音乐
+function playPauseMusic() {
+    const audio = document.getElementById('background-music');
+    
+    if (isMusicPlaying) {
+        audio.pause();
+    } else {
+        audio.play().catch(error => {
+            console.log('播放失败:', error);
+        });
+    }
+    
+    isMusicPlaying = !isMusicPlaying;
+    updatePlayButton();
+}
+
+// 更新播放按钮状态
+function updatePlayButton() {
+    const button = document.getElementById('play-pause-btn');
+    button.textContent = isMusicPlaying ? '⏸️' : '▶';
+}
+
+// 播放下一首（循环播放）
+function playNextSong() {
+    if (musicList.length === 0) return;
+    
+    currentSongIndex = (currentSongIndex + 1) % musicList.length;
+    const audio = document.getElementById('background-music');
+    audio.src = 'music/' + musicList[currentSongIndex];
+    
+    // 更新当前播放显示
+    document.getElementById('current-song').textContent = 
+        musicList[currentSongIndex].replace('.mp3', '');
+    
+    audio.play().catch(error => {
+        console.log('播放失败:', error);
+    });
+    
+    isMusicPlaying = true;
+    updatePlayButton();
+}
+
+// 切换音乐面板显示
+function toggleMusicPanel() {
+    const panel = document.querySelector('.music-panel');
+    panel.classList.toggle('show');
 }
 
 // 保存设置

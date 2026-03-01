@@ -89,6 +89,23 @@
         <div class="heart">💓</div>
     </div>
 
+    <!-- 音乐控制面板 -->
+    <div class="music-control-panel">
+        <div class="music-toggle" onclick="toggleMusicPanel()">
+            ♫
+        </div>
+        <div class="music-panel">
+            <div class="now-playing">
+                <span id="current-song">未播放</span>
+            </div>
+            <div class="music-controls">
+                <button onclick="playPauseMusic()" id="play-pause-btn">▶</button>
+                <button onclick="playNextSong()">⏭️</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" loop></audio>
     <script src="script.js"></script>
 </body>
 </html>
