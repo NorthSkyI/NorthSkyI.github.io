@@ -190,3 +190,72 @@ function createFloatingHearts() {
 
 // 启动浮动爱心动画
 createFloatingHearts();
+
+// 添加点击生成爱心功能
+addClickHeartEffect();
+
+// 点击生成爱心功能
+function addClickHeartEffect() {
+    document.addEventListener('click', function(e) {
+        const hearts = ['❤️', '💕', '💖', '💗', '💓', '💞', '💝', '💘'];
+        const randomHeart = hearts[Math.floor(Math.random() * hearts.length)];
+        
+        // 创建爱心元素
+        const heart = document.createElement('div');
+        heart.className = 'click-heart';
+        heart.textContent = randomHeart;
+        heart.style.position = 'fixed';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        heart.style.fontSize = (Math.random() * 1.5 + 1.5) + 'em';
+        heart.style.zIndex = '9999';
+        heart.style.pointerEvents = 'none';
+        heart.style.userSelect = 'none';
+        
+        document.body.appendChild(heart);
+        
+        // 波浪形动画
+        const animationDuration = Math.random() * 2 + 3; // 3-5秒
+        const waveAmplitude = Math.random() * 30 + 20; // 20-50px波浪幅度
+        const startX = e.clientX;
+        
+        // 动画关键帧
+        const keyframes = [
+            { 
+                transform: 'translateY(0) translateX(0)',
+                opacity: 1
+            },
+            { 
+                transform: `translateY(-100px) translateX(${waveAmplitude}px)`,
+                opacity: 0.8
+            },
+            { 
+                transform: `translateY(-200px) translateX(${-waveAmplitude}px)`,
+                opacity: 0.6
+            },
+            { 
+                transform: `translateY(-300px) translateX(${waveAmplitude}px)`,
+                opacity: 0.4
+            },
+            { 
+                transform: `translateY(-400px) translateX(${-waveAmplitude}px)`,
+                opacity: 0.2
+            },
+            { 
+                transform: `translateY(-500px) translateX(0)`,
+                opacity: 0
+            }
+        ];
+        
+        // 执行动画
+        heart.animate(keyframes, {
+            duration: animationDuration * 1000,
+            easing: 'ease-out'
+        });
+        
+        // 动画完成后移除元素
+        setTimeout(() => {
+            heart.remove();
+        }, animationDuration * 1000);
+    });
+}
