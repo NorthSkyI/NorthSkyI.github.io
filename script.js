@@ -299,11 +299,627 @@ function createFloatingHearts() {
     }, 2000);
 }
 
+// 恋爱清单数据
+const loveList = [
+    {
+        "id": 1,
+        "status": 0,
+        "content": "来一次说走就走的旅行"
+    },
+    {
+        "id": 2,
+        "status": 0,
+        "content": "一起放风筝"
+    },
+    {
+        "id": 3,
+        "status": 0,
+        "content": "一起骑自行车"
+    },
+    {
+        "id": 4,
+        "status": 0,
+        "content": "一起去跑步"
+    },
+    {
+        "id": 5,
+        "status": 0,
+        "content": "互相给对方写一封信"
+    },
+    {
+        "id": 6,
+        "status": 0,
+        "content": "背着我走一段路"
+    },
+    {
+        "id": 7,
+        "status": 0,
+        "content": "一起跳手势舞"
+    },
+    {
+        "id": 8,
+        "status": 0,
+        "content": "一起去博物馆"
+    },
+    {
+        "id": 9,
+        "status": 0,
+        "content": "一起爬山"
+    },
+    {
+        "id": 10,
+        "status": 0,
+        "content": "下雪天堆雪人打雪仗"
+    },
+    {
+        "id": 11,
+        "status": 0,
+        "content": "给对方一个温暖的拥抱"
+    },
+    {
+        "id": 12,
+        "status": 0,
+        "content": "一起玩游戏"
+    },
+    {
+        "id": 13,
+        "status": 0,
+        "content": "一起欣赏城市夜景"
+    },
+    {
+        "id": 14,
+        "status": 0,
+        "content": "以喝交杯酒的方式喝东西"
+    },
+    {
+        "id": 15,
+        "status": 0,
+        "content": "一起庆祝恋爱纪念日"
+    },
+    {
+        "id": 16,
+        "status": 0,
+        "content": "一起野餐"
+    },
+    {
+        "id": 17,
+        "status": 0,
+        "content": "一起吐槽一次对方缺点"
+    },
+    {
+        "id": 18,
+        "status": 0,
+        "content": "一起去拍一次情侣写真"
+    },
+    {
+        "id": 19,
+        "status": 0,
+        "content": "一起玩拼图"
+    },
+    {
+        "id": 20,
+        "status": 0,
+        "content": "一起做陶艺"
+    },
+    {
+        "id": 21,
+        "status": 0,
+        "content": "一起吃火锅"
+    },
+    {
+        "id": 22,
+        "status": 0,
+        "content": "一起看海"
+    },
+    {
+        "id": 23,
+        "status": 0,
+        "content": "一起去动物园"
+    },
+    {
+        "id": 24,
+        "status": 1,
+        "content": "一起做手工"
+    },
+    {
+        "id": 25,
+        "status": 0,
+        "content": "一起跨年"
+    },
+    {
+        "id": 26,
+        "status": 0,
+        "content": "一起放烟花"
+    },
+    {
+        "id": 27,
+        "status": 0,
+        "content": "一起听歌"
+    },
+    {
+        "id": 28,
+        "status": 0,
+        "content": "自驾游"
+    },
+    {
+        "id": 29,
+        "status": 0,
+        "content": "一起逛母校"
+    },
+    {
+        "id": 30,
+        "status": 0,
+        "content": "一起看雪"
+    },
+    {
+        "id": 31,
+        "status": 0,
+        "content": "给对方拍照"
+    },
+    {
+        "id": 32,
+        "status": 0,
+        "content": "为对方吹头发"
+    },
+    {
+        "id": 33,
+        "status": 0,
+        "content": "一起去鬼屋"
+    },
+    {
+        "id": 34,
+        "status": 0,
+        "content": "玩真心话大冒险"
+    },
+    {
+        "id": 35,
+        "status": 0,
+        "content": "一起去水上乐园"
+    },
+    {
+        "id": 36,
+        "status": 0,
+        "content": "一起去小吃街"
+    },
+    {
+        "id": 37,
+        "status": 0,
+        "content": "一起玩五子棋"
+    },
+    {
+        "id": 38,
+        "status": 0,
+        "content": "一起喝酒"
+    },
+    {
+        "id": 39,
+        "status": 0,
+        "content": "一起吃烤肉"
+    },
+    {
+        "id": 40,
+        "status": 0,
+        "content": "互相喂食"
+    },
+    {
+        "id": 41,
+        "status": 0,
+        "content": "互相按摩"
+    },
+    {
+        "id": 42,
+        "status": 0,
+        "content": "一起坐摩天轮"
+    },
+    {
+        "id": 43,
+        "status": 0,
+        "content": "一起聊关于未来"
+    },
+    {
+        "id": 44,
+        "status": 0,
+        "content": "一起看电影"
+    },
+    {
+        "id": 45,
+        "status": 0,
+        "content": "一起去海洋馆"
+    },
+    {
+        "id": 46,
+        "status": 0,
+        "content": "一起逛花鸟市场"
+    },
+    {
+        "id": 47,
+        "status": 0,
+        "content": "一起逛超市"
+    },
+    {
+        "id": 48,
+        "status": 0,
+        "content": "一起看日出🌅"
+    },
+    {
+        "id": 49,
+        "status": 0,
+        "content": "一起看日落🌄"
+    },
+    {
+        "id": 50,
+        "status": 0,
+        "content": "一起看绚烂的烟花🌟"
+    },
+    {
+        "id": 51,
+        "status": 0,
+        "content": "一起吃夜市🍖"
+    },
+    {
+        "id": 52,
+        "status": 0,
+        "content": "一起穿情侣装逛街👫"
+    },
+    {
+        "id": 53,
+        "status": 0,
+        "content": "陪对方过生日🎂"
+    },
+    {
+        "id": 54,
+        "status": 0,
+        "content": "一起去逛古镇老街"
+    },
+    {
+        "id": 55,
+        "status": 0,
+        "content": "在雨中漫步☔"
+    },
+    {
+        "id": 56,
+        "status": 0,
+        "content": "在沙滩上写下彼此的名字✍"
+    },
+    {
+        "id": 57,
+        "status": 0,
+        "content": "穿彼此的衣服👯"
+    },
+    {
+        "id": 58,
+        "status": 0,
+        "content": "一起赏月🌙"
+    },
+    {
+        "id": 59,
+        "status": 0,
+        "content": "为对方剥水果"
+    },
+    {
+        "id": 60,
+        "status": 0,
+        "content": "为对方系鞋带"
+    },
+    {
+        "id": 61,
+        "status": 0,
+        "content": "一起去见对方父母"
+    },
+    {
+        "id": 62,
+        "status": 0,
+        "content": "一起喝茶"
+    },
+    {
+        "id": 63,
+        "status": 0,
+        "content": "一起吃早餐"
+    },
+    {
+        "id": 64,
+        "status": 0,
+        "content": "一起剪辑旅行视频"
+    },
+    {
+        "id": 65,
+        "status": 0,
+        "content": "为对方化妆"
+    },
+    {
+        "id": 66,
+        "status": 0,
+        "content": "一次浪漫的告白"
+    },
+    {
+        "id": 67,
+        "status": 0,
+        "content": "为对方夹菜"
+    },
+    {
+        "id": 68,
+        "status": 0,
+        "content": "一起打电话12个小时"
+    },
+    {
+        "id": 69,
+        "status": 0,
+        "content": "一起喝奶茶"
+    },
+    {
+        "id": 70,
+        "status": 0,
+        "content": "一起吃甜品"
+    },
+    {
+        "id": 71,
+        "status": 0,
+        "content": "一起做缆车"
+    },
+    {
+        "id": 72,
+        "status": 0,
+        "content": "一起打一把伞"
+    },
+    {
+        "id": 73,
+        "status": 0,
+        "content": "一起吃宵夜"
+    },
+    {
+        "id": 74,
+        "status": 0,
+        "content": "一起看恐怖片"
+    },
+    {
+        "id": 75,
+        "status": 0,
+        "content": "一起熬夜"
+    },
+    {
+        "id": 76,
+        "status": 0,
+        "content": "为对方挑选一束花"
+    },
+    {
+        "id": 77,
+        "status": 0,
+        "content": "互说“我爱你”"
+    },
+    {
+        "id": 78,
+        "status": 0,
+        "content": "一起拍一个旅行vlog"
+    },
+    {
+        "id": 79,
+        "status": 0,
+        "content": "一起赏花"
+    },
+    {
+        "id": 80,
+        "status": 0,
+        "content": "一起坐船"
+    },
+    {
+        "id": 81,
+        "status": 0,
+        "content": "一起吃自助餐"
+    },
+    {
+        "id": 82,
+        "status": 0,
+        "content": "一起制作一本关于你们的剪贴簿"
+    },
+    {
+        "id": 83,
+        "status": 0,
+        "content": "一起敷面膜"
+    },
+    {
+        "id": 84,
+        "status": 0,
+        "content": "嘴对嘴吃东西🍜"
+    },
+    {
+        "id": 85,
+        "status": 0,
+        "content": "一起抓娃娃"
+    },
+    {
+        "id": 86,
+        "status": 0,
+        "content": "一起手拉手压马路👫"
+    },
+    {
+        "id": 87,
+        "status": 0,
+        "content": "在公共场合下一起喝娃哈哈🍼"
+    },
+    {
+        "id": 88,
+        "status": 0,
+        "content": "一起吃西瓜🍉"
+    },
+    {
+        "id": 89,
+        "status": 0,
+        "content": "推对方玩秋千💁"
+    },
+    {
+        "id": 90,
+        "status": 0,
+        "content": "一起去看一次音乐会🎵"
+    },
+    {
+        "id": 91,
+        "status": 0,
+        "content": "一起完成密室逃脱💀"
+    },
+    {
+        "id": 92,
+        "status": 0,
+        "content": "一起在冬天吃冰激凌"
+    },
+    {
+        "id": 93,
+        "status": 0,
+        "content": "一起追剧"
+    },
+    {
+        "id": 94,
+        "status": 0,
+        "content": "互相叫“老婆”和“老公”👨‍❤️‍💋‍👨"
+    },
+    {
+        "id": 95,
+        "status": 0,
+        "content": "带你在午夜开车兜风🚙"
+    },
+    {
+        "id": 96,
+        "status": 0,
+        "content": "拥有我们独特的情侣戒指💍"
+    },
+    {
+        "id": 97,
+        "status": 0,
+        "content": "来一场难忘的求婚🎁💍"
+    },
+    {
+        "id": 98,
+        "status": 0,
+        "content": "拍属于我们自己的婚纱照🎎"
+    },
+    {
+        "id": 99,
+        "status": 0,
+        "content": "互相在朋友圈晒结婚证📇"
+    },
+    {
+        "id": 100,
+        "status": 0,
+        "content": "举行一场梦中的婚礼💤🌹🎉"
+    }
+];
+
+// 初始化恋爱清单
+function initializeLoveList() {
+    renderLoveList();
+    
+    // 默认关闭所有恋爱清单项目
+    setTimeout(() => {
+        document.querySelectorAll('.love-list-item').forEach(item => {
+            const content = item.querySelector('.love-list-content');
+            content.style.height = '0';
+        });
+    }, 100);
+}
+
+// 渲染恋爱清单
+function renderLoveList() {
+    const container = document.getElementById('love-list-items');
+    container.innerHTML = '';
+    
+    loveList.forEach(item => {
+        const listItem = createLoveListItem(item);
+        container.appendChild(listItem);
+    });
+}
+
+// 创建恋爱清单项目
+function createLoveListItem(item) {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'love-list-item';
+    itemElement.dataset.id = item.id;
+    
+    // 项目头部（可点击部分）
+    const header = document.createElement('div');
+    header.className = 'love-list-header';
+    header.innerHTML = `
+        <span class="item-number">${item.id}.</span>
+        <span class="item-content">${item.content}</span>
+        <span class="item-status ${item.status === 1 ? 'completed' : 'pending'}">
+            ${item.status === 1 ? '✅' : '⏳'}
+        </span>
+    `;
+    
+    // 项目内容（展开部分）
+    const content = document.createElement('div');
+    content.className = 'love-list-content';
+    
+    if (item.status === 1) {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'item-image-container';
+        
+        const img = document.createElement('img');
+        img.src = `lovelist/${item.id}.png`;
+        img.alt = item.content;
+        img.className = item.status === 1 ? 'item-image' : 'item-image grayscale';
+        img.onerror = function() {
+            this.style.display = 'none';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'image-placeholder';
+            placeholder.textContent = '暂无图片';
+            imgContainer.appendChild(placeholder);
+        };
+        
+        imgContainer.appendChild(img);
+        content.appendChild(imgContainer);
+    } else {
+        const noImage = document.createElement('div');
+        noImage.className = 'no-image';
+        noImage.textContent = '暂无图片';
+        content.appendChild(noImage);
+    }
+    
+    // 点击展开/收起
+    header.addEventListener('click', function() {
+        const isExpanded = itemElement.classList.contains('expanded');
+        
+        // 收起所有其他展开的项目
+        document.querySelectorAll('.love-list-item.expanded').forEach(expandedItem => {
+            if (expandedItem !== itemElement) {
+                expandedItem.classList.remove('expanded');
+                const content = expandedItem.querySelector('.love-list-content');
+                content.style.height = '0';
+            }
+        });
+        
+        // 切换当前项目
+        if (!isExpanded) {
+            itemElement.classList.add('expanded');
+            const content = itemElement.querySelector('.love-list-content');
+            content.style.height = 'auto';
+            const contentHeight = content.scrollHeight;
+            content.style.height = '0';
+            // 触发重排
+            content.offsetHeight;
+            content.style.height = contentHeight + 'px';
+        } else {
+            const content = itemElement.querySelector('.love-list-content');
+            content.style.height = '0';
+            content.addEventListener('transitionend', function handler() {
+                itemElement.classList.remove('expanded');
+                content.removeEventListener('transitionend', handler);
+            }, { once: true });
+        }
+    });
+    
+    itemElement.appendChild(header);
+    itemElement.appendChild(content);
+    
+    return itemElement;
+}
+
 // 启动浮动爱心动画
 createFloatingHearts();
 
 // 添加点击生成爱心功能
 addClickHeartEffect();
+
+// 初始化恋爱清单
+initializeLoveList();
 
 // 点击生成爱心功能
 function addClickHeartEffect() {
